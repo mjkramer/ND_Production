@@ -20,7 +20,7 @@ source install/spine-prod/configure.sh
 
 run python3 install/spine/bin/run.py \
     --config "$ND_PRODUCTION_SPINE_CONFIG" \
-    --log_dir "$logDir" \
+    --log-dir "$logDir" \
     --source "$inFile" \
     --output "$outFile"
 
