@@ -18,6 +18,8 @@ inFile=${ND_PRODUCTION_OUTDIR_BASE}/run-mlreco/${ND_PRODUCTION_IN_NAME}/LARCV/${
 
 source install/spine-prod/configure.sh
 
+rm -f "$outFile" "$(dirname "$outFile")/$(basename "$outFile" .hdf5).h5"
+
 run python3 install/spine/bin/run.py \
     --config "$ND_PRODUCTION_SPINE_CONFIG" \
     --log-dir "$logDir" \
@@ -27,4 +29,6 @@ run python3 install/spine/bin/run.py \
 
 infOutDir=${outDir}/MLRECO_SPINE/${subDir}
 mkdir -p "$infOutDir"
-mv "$outFile" "$infOutDir"
+# spine is insisting on .h5
+mv "$(dirname "$outFile")/$(basename "$outFile" .hdf5).h5" \
+    "$infOutDir/$(basename "$outFile")"
